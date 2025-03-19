@@ -1,9 +1,12 @@
 package br.com.study.TabelaFipe.principal;
 
+import br.com.study.TabelaFipe.service.ConsumoApi;
+
 import java.util.Scanner;
 
 public class Principal {
     private Scanner leitura = new Scanner(System.in);
+    private ConsumoApi consumo = new ConsumoApi();
     private final String URL_BASE = "https://parallelum.com.br/fipe/api/v1/";
 
     public void exibeMenu() {
@@ -29,7 +32,8 @@ public class Principal {
             endereco = URL_BASE + "caminhoes/marcas";
         }
 
-
+        var json = consumo.obterDados(endereco);
+        System.out.println(json);
 
     }
 }
