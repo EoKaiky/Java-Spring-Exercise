@@ -3,7 +3,6 @@ package br.com.study.TabelaFipe.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
-import org.springframework.jmx.support.ObjectNameManager;
 
 import java.util.List;
 

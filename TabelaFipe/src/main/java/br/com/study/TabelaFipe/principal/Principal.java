@@ -1,6 +1,7 @@
 package br.com.study.TabelaFipe.principal;
 
 import br.com.study.TabelaFipe.model.Dados;
+import br.com.study.TabelaFipe.model.Modelos;
 import br.com.study.TabelaFipe.service.ConsumoApi;
 import br.com.study.TabelaFipe.service.ConverteDados;
 import java.util.Comparator;
@@ -24,7 +25,6 @@ public class Principal {
 
         System.out.println(menu);
         var opcao = leitura.nextLine();
-
         String endereco;
 
         if(opcao.toLowerCase().contains("carr")) {
@@ -39,10 +39,19 @@ public class Principal {
         System.out.println(json);
         var marcas = conversor.obterLista(json, Dados.class);
         marcas.stream()
-                .sorted(Comparator.comparing(Dados::codigo))
+                .sorted(Comparator.comparingInt(Dados::codigo))
                 .forEach(System.out::println);
 
         System.out.println("Informe o código da marca para consulta: ");
         var codigoMarca = leitura.nextLine();
+
+        endereco = endereco + "/" + codigoMarca + "/modelos";
+        json = consumo.obterDados(endereco);
+        var modeloLista = conversor.obterDados(json, Modelos.class);
+
+        System.out.println("\nModelos dessa marca: ");
+        modeloLista.modelos().stream()
+                .sorted(Comparator.comparing(Dados::codigo))
+                .forEach(System.out::println);
     }
 }
